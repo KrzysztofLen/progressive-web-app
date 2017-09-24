@@ -6,8 +6,15 @@
   "scripts": {
     "start": "http-server -c-1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KrzysztofLen/progressive-web-app.git"
+  },
+  "author": "Krzysztof Len",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KrzysztofLen/progressive-web-app/issues"
+  },
   "devDependencies": {
     "http-server": "^0.10.0"
   },
