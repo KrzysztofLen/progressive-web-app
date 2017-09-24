@@ -1,0 +1,32 @@
+.demo-list-two {
+    width: 300px;
+}
+
+.floating-button {
+    z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 30px;
+}
+
+.demo-list-two {
+    width: 100%;
+}
+
+.mdl-chip--deletable {
+    margin-left: 25px;
+}
+
+.input-section {
+    display: block;
+    margin: 10px auto;
+}
+
+.shared-moment-card.mdl-card {
+    margin: 10px auto;
+}
+
+.post-button-div {
+    text-align: center;
+}
