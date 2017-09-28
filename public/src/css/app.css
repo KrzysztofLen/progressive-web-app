@@ -1,3 +1,7 @@
+:root {
+    --label-color: #2d2d2d;
+}
+
 .demo-list-two {
     width: 300px;
 }
@@ -29,4 +33,40 @@
 
 .post-button-div {
     text-align: center;
+}
+
+#create-post {
+    display: none;
+}
+
+.pwa-card-name__name-header {
+    float: right;
+    margin: 5px 10px;
+}
+
+.mdl-card {
+    width: 100%;
+}
+
+.pwa-card-label {
+    color: var(--label-color);
+    font-size: 15px;
+    line-height: 20px;
+}
+
+#jumbotron {
+    background: url('../images/benjamin-hung-340383.jpg') center / cover;
+    height: 200px;
+}
+
+.mdl-card--border {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.mdl-card__actions {
+    padding: 8px 15px;
+}
+
+.mdl-button--raised.mdl-button--colored {
+    padding: 0 35px;
 }

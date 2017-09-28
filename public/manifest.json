@@ -1,0 +1,120 @@
+{
+  "name": "Progressive Web App",
+  "short_name": "PWA",
+  "start_url": "/index.html",
+  "scope": ".",
+  "display": "fullscreen",
+  "orientation": "portrait-primary",
+  "background_color": "#fff",
+  "theme_color": "#3f51b5",
+  "description": "First PWA app",
+  "dir": "ltr",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "/src/images/icons/android-icon-36x36.png",
+      "type": "image/png",
+      "sizes": "36x36"
+    },
+    {
+      "src": "/src/images/icons/android-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/src/images/icons/android-icon-72x72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/src/images/icons/android-icon-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/src/images/icons/android-icon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/src/images/icons/android-icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "57x57"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "60x60"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "76x76"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "114x114"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-256x256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-384x384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "/src/images/icons/apple-icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
