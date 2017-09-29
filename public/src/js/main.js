@@ -39,7 +39,13 @@ const closeCreatePostModal = () => {
 	shareImageButton.style.display = 'block';
 }
 
-const createContact = () => {
+const clearContact = () => {
+	while(pwaContactsList.hasChildNodes()) {
+		pwaContactsList.removeChild(pwaContactsList.lastChild);
+	}
+}
+
+const createContact = (data) => {
 	for (let i = 0; i < 3; i++) {
 		
 	const cardWrapper = document.createElement('div');
@@ -60,7 +66,7 @@ const createContact = () => {
 
 	const personName = document.createElement('h4');
 	personName.className = 'pwa-card-name__name-header';
-	personName.textContent = 'Emlen Lafuente';
+	personName.textContent = data.name;
 	personDataWrapper.appendChild(personName);
 
 	const personOtherData = document.createElement('div');
@@ -91,16 +97,16 @@ const createContact = () => {
 	spanLabelArray[1].textContent = 'adress: ';
 	spanLabelArray[2].textContent = 'bitcoin: ';
 
-	spanDataArray[0].textContent = 'elafuente1@scribd.com:';
-	spanDataArray[1].textContent = '1184 Dunning Street:';
-	spanDataArray[2].textContent = '1EuupijjV7GStvHA8Ee6dLhEo4zbpWNUfh:';
+	spanDataArray[0].textContent = 	data.email;
+	spanDataArray[1].textContent = 	data.adress;
+	spanDataArray[2].textContent = 	data.bitcoin;
 
 	const seperatingDivForImage = document.createElement('div');
 	seperatingDivForImage.className = 'pwa-card-other-data-wrapper';
 	personOtherData.appendChild(seperatingDivForImage);
 
 	const personOtherDataImage = document.createElement('img');
-	personOtherDataImage.setAttribute('src', '../src/images/brooke-lark-229136.jpg');
+	personOtherDataImage.setAttribute('src', data.image);
 	personOtherDataImage.setAttribute('alt', 'xyz');
 	seperatingDivForImage.appendChild(personOtherDataImage);
 
@@ -122,11 +128,50 @@ shareImageButton.addEventListener('click', openCreatePostModal);
 
 closeCreatePostModalButton.addEventListener('click', closeCreatePostModal);
 
+const updateUI = (data) => {
+	clearContact();
+	for (var index = 0; index < data.length; index++) {
+		createContact(data[index]);	
+	}
+}
 
-fetch('https://httpbin.org/ip')
-	.then((response) => {
-		return response.json();
+const url = 'https://pwa-app-72fbb.firebaseio.com/contacts.json';
+let networkDataReceived = true;
+
+fetch(url)
+	.then((res) => {
+		return res.json();
 	})
 	.then((data) => {
-		createContact();
-	})
+		networkDataReceived = true;
+		console.log('From web', data);
+		
+		let dataArray = [];
+
+		for(let key in data) {
+			dataArray.push(data[key]);
+		}
+
+		updateUI(dataArray);
+	});
+
+if('caches' in window) {
+	caches.match(url)
+		.then((response) => {
+			if(response) {
+				return response.json();
+			}
+		})
+		.then((data) => {
+			console.log('From cache', data);
+			if(!networkDataReceived) {
+				let dataArray = [];
+
+				for(let key in data) {
+					dataArray.push(data[key]);
+				}	
+
+				updateUI(dataArray);
+			}
+		});
+}
