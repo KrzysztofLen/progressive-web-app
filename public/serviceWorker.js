@@ -1,3 +1,5 @@
+importScripts('/src/js/idb.js');
+
 let CACHE_STATIC_NAME = 'static-v1.9';
 let CACHE_DYNAMIC_NAME = 'dynamic-v1.0';
 const STATIC_FILES = [
@@ -7,12 +9,19 @@ const STATIC_FILES = [
     "/main.bundle.js",
     "/src/js/promise.js", // support for older browser
     "/src/js/fetch.js", // don't make sens because service workers doesn't supports by older browsers
+    "/src/js/idb.js",
     "/src/images/benjamin-hung-340383.jpg",
     "https://fonts.googleapis.com/css?family=Roboto:400,700",
     "https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js",
     "https://fonts.googleapis.com/icon?family=Material+Icons",
     "https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css"
 ];
+
+var dbPromise = idb.open('contacts-store', 1, function(db) {
+    if(!db.objectStoreNames.contains('contacts')) {
+        db.createObjectStore('contacts', {keyPath: 'id'});
+    }
+});
 
 const isInArray = (string, array) => {
     let cachePath;
@@ -58,16 +67,27 @@ self.addEventListener('fetch', (event) => {
     const url = 'https://pwa-app-72fbb.firebaseio.com/contacts';
 
     if(event.request.url.indexOf(url) > -1) {
-        event.respondWith(
-            caches.open(CACHE_DYNAMIC_NAME)
-                .then((cache) => {
-                    return fetch(event.request)
-                        .then((res) => {
-                            cache.put(event.request.url, res.clone());
-                        return res;
+        event.respondWith(fetch(event.request)
+            .then((res) => {
+                let clonedRes = res.clone();    
+
+                clonedRes.json()
+                    .then((data) => {
+                        for(let key in data) {
+                            dbPromise
+                                .then((db) => {
+                                    let tx = db.transaction('contacts', 'readwrite');
+                                    let store = tx.objectStore('contacts');
+                               console.log(data[key]);
+                                    return tx.complete;
+                                });
+                        }
                     });
+
+                return res;
             })
         );
+
     } else if(isInArray(event.request.url, STATIC_FILES)) {
         event.respondWith(
             caches.match(event.request)
