@@ -2,6 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSAssets = require('optimize-css-assets-webpack-plugin');
+const BabelWebpackPlugin = require('babel-minify-webpack-plugin');
+const OptimizeJsPlugin = require("optimize-js-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 let config = {
     entry: [
@@ -70,8 +74,8 @@ let config = {
         ] // end rules
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
-        new ExtractTextWebpackPlugin('styles.css')
+        new ExtractTextWebpackPlugin('styles.css'),
+        new webpack.optimize.UglifyJsPlugin()
     ],
     devServer: {
         port: 3002,

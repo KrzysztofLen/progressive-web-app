@@ -1,0 +1,72 @@
+:root {
+    --label-color: #2d2d2d;
+}
+
+.demo-list-two {
+    width: 300px;
+}
+
+.floating-button {
+    z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 30px;
+}
+
+.demo-list-two {
+    width: 100%;
+}
+
+.mdl-chip--deletable {
+    margin-left: 25px;
+}
+
+.input-section {
+    display: block;
+    margin: 10px auto;
+}
+
+.shared-moment-card.mdl-card {
+    margin: 10px auto;
+}
+
+.post-button-div {
+    text-align: center;
+}
+
+#create-post {
+    display: none;
+}
+
+.pwa-card-name__name-header {
+    float: right;
+    margin: 5px 10px;
+}
+
+.mdl-card {
+    width: 100%;
+}
+
+.pwa-card-label {
+    color: var(--label-color);
+    font-size: 15px;
+    line-height: 20px;
+}
+
+#jumbotron {
+    background: url(images/_/_/_/public/src/images/benjamin-hung-340383.jpg) center / cover;
+    height: 200px;
+}
+
+.mdl-card--border {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.mdl-card__actions {
+    padding: 8px 15px;
+}
+
+.mdl-button--raised.mdl-button--colored {
+    padding: 0 35px;
+}
