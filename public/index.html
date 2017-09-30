@@ -100,15 +100,15 @@
                                     <label class="mdl-textfield__label" for="name" name="name">Name</label>
                                 </div>
                                 <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="Email">
-                                    <label class="mdl-textfield__label" for="Email" name="Email">Email</label>
+                                    <input class="mdl-textfield__input" type="text" id="email">
+                                    <label class="mdl-textfield__label" for="Email" name="email">Email</label>
                                 </div>
                                 <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="Adress">
+                                    <input class="mdl-textfield__input" type="text" id="adress">
                                     <label class="mdl-textfield__label" for="Adress" name="Adress">Adress</label>
                                 </div>
                                 <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="Bitcoin">
+                                    <input class="mdl-textfield__input" type="text" id="bitcoin">
                                     <label class="mdl-textfield__label" for="Bitcoin" name="Bitcoin">Bitcoin</label>
                                 </div>
                                 <br>
@@ -130,6 +130,10 @@
                             <i class="material-icons">add</i>
                         </button>
                         </div>
+                        <div id="confirmation-toast" aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+                            <div class="mdl-snackbar__text"></div>
+                            <button type="button" class="mdl-snackbar__action"></button>
+                        </div>
                     </div>
                 </section>
                 <section class="mdl-layout__tab-panel" id="fixed-tab-3">
@@ -150,6 +154,7 @@
     <script src="/src/js/promise.js"></script>
     <script src="/src/js/fetch.js"></script>
     <script src="/src/js/idb.js"></script>
+    <script src="/src/js/utility.js"></script>
     <script src="./main.bundle.js"></script>
 </body>
 

@@ -36,7 +36,20 @@
 }
 
 #create-post {
-    display: none;
+    z-index: 1001;
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    bottom: 0;
+    top: 105px;
+    text-align: center;
+    /* display: none; */
+    -webkit-transform: translateY(100vh);
+            transform: translateY(100vh);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
 }
 
 .pwa-card-name__name-header {

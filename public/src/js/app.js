@@ -12,7 +12,6 @@ if('serviceWorker' in navigator) {
         });
 }
 
-
 // fetch('https://httpbin.org/post', {
 //     method: 'POST',
 //     headers: {

@@ -2,10 +2,16 @@ const shareImageButton = document.querySelector('#share-image-button');
 const createPostArea = document.querySelector('#create-post');
 const closeCreatePostModalButton = document.querySelector('#close-create-post-modal-btn');
 const pwaContactsList = document.querySelector('#pwa-contacts-list');
+const form = document.querySelector('form'),
+	  name = document.querySelector('#name'),
+	  email = document.querySelector('#email'),
+	  adress = document.querySelector('#adress'),
+	  bitcoin = document.querySelector('#bitcoin');
+
 let defferedPrompt = '';
 
 const openCreatePostModal = () => {
-	createPostArea.style.display = 'block';
+	createPostArea.style.transform = 'translateY(0)';
 
 	if(defferedPrompt) {
 		defferedPrompt.prompt();
@@ -35,7 +41,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 });
 
 const closeCreatePostModal = () => {
-	createPostArea.style.display = 'none';
+	createPostArea.style.transform = 'translateY(100vh)';
 	shareImageButton.style.display = 'block';
 }
 
@@ -46,8 +52,7 @@ const clearContact = () => {
 }
 
 const createContact = (data) => {
-	for (let i = 0; i < 3; i++) {
-		
+
 	const cardWrapper = document.createElement('div');
 	cardWrapper.className = 'demo-card-square mdl-card mdl-shadow--2dp';
 
@@ -121,7 +126,6 @@ const createContact = (data) => {
 
 	pwaContactsList.appendChild(cardWrapper);
 
-	}	
 };
 
 shareImageButton.addEventListener('click', openCreatePostModal);
@@ -136,7 +140,7 @@ const updateUI = (data) => {
 }
 
 const url = 'https://pwa-app-72fbb.firebaseio.com/contacts.json';
-let networkDataReceived = true;
+let networkDataReceived = false;
 
 fetch(url)
 	.then((res) => {
@@ -145,7 +149,7 @@ fetch(url)
 	.then((data) => {
 		networkDataReceived = true;
 		console.log('From web', data);
-		
+
 		let dataArray = [];
 
 		for(let key in data) {
@@ -155,23 +159,75 @@ fetch(url)
 		updateUI(dataArray);
 	});
 
-if('caches' in window) {
-	caches.match(url)
-		.then((response) => {
-			if(response) {
-				return response.json();
+if('indexedDB' in window) {
+	getAllData('contacts')
+		.then((data) => {
+			if (!networkDataReceived) {
+				console.log('From cache', data);
+				updateUI(data);
 			}
 		})
-		.then((data) => {
-			console.log('From cache', data);
-			if(!networkDataReceived) {
-				let dataArray = [];
-
-				for(let key in data) {
-					dataArray.push(data[key]);
-				}	
-
-				updateUI(dataArray);
-			}
-		});
 }
+
+// Send data imidiatly to backend
+const sendData = () => {
+	fetch('https://pwa-app-72fbb.firebaseio.com/contacts.json', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json'
+		},
+		body: JSON.stringify({
+			id: new Date().toISOString(),
+			name:	name.value,
+			email:	email.value,
+			adress:	adress.value,
+			bitcoin:	bitcoin.value,
+			image: "https://firebasestorage.googleapis.com/v0/b/pwa-app-72fbb.appspot.com/o/brooke-lark-229136.jpg?alt=media&token=922238cc-7795-4316-ab1e-b32864c39f54"
+		})
+	})
+		.then((res) => {
+			console.log('Sent data', res);
+			updateUI();
+		})
+}
+
+form.addEventListener('submit', (event) => {
+	event.preventDefault();
+	if(name.value.trim() === '' || email.value.trim() === '' || adress.value.trim() === '' || bitcoin.value.trim() === '') {
+		alert('Please enter valid data!');
+		return;
+	}
+
+	closeCreatePostModal();
+
+	if('serviceWorker' in navigator && 'SyncManager' in window) {
+		navigator.serviceWorker.ready
+			.then((sw) => {
+
+			const contact = {
+				id: new Date().toISOString(),
+				name:	name.value,
+				email:	email.value,
+				adress:	adress.value,
+				bitcoin:	bitcoin.value
+			};
+
+			setAllData('sync-contacts', contact)
+				.then(() => {
+					return sw.sync.register('sync-new-contact');
+				})
+				// showing material message
+				.then(() => {
+					const snackbarContainer = document.querySelector('#confirmation-toast');
+					const data = {message: 'Your Post was saved for syncing!'};
+					snackbarContainer.MaterialSnackbar.showSnackbar(data);
+				})
+				.catch((err) => {
+					console.log(err);
+				})
+			});
+	} else {
+		sendData();
+	}
+});
