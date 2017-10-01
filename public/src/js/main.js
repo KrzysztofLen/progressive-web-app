@@ -171,7 +171,7 @@ if('indexedDB' in window) {
 
 // Send data imidiatly to backend
 const sendData = () => {
-	fetch('https://pwa-app-72fbb.firebaseio.com/contacts.json', {
+	fetch('https://us-central1-pwa-app-72fbb.cloudfunctions.net/storeContactsData', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

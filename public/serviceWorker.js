@@ -1,7 +1,7 @@
 importScripts('/src/js/idb.js');
 importScripts('/src/js/utility.js');
 
-let CACHE_STATIC_NAME = 'static-v1.12';
+let CACHE_STATIC_NAME = 'static-v1.13';
 let CACHE_DYNAMIC_NAME = 'dynamic-v1.0';
 const STATIC_FILES = [
 	"/",
@@ -121,7 +121,7 @@ self.addEventListener('sync', (event) => {
 			getAllData('sync-contacts')
                 .then((data) => {
 		        for(let dt of data) {
-					fetch('https://pwa-app-72fbb.firebaseio.com/contacts.json', {
+					fetch('https://us-central1-pwa-app-72fbb.cloudfunctions.net/storeContactsData', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
@@ -139,7 +139,10 @@ self.addEventListener('sync', (event) => {
                     .then((res) => {
                         console.log('Sent data', res);
                         if(res.ok) {
-							deleteItemFromDatabase('sync-contacts', dt.id)
+                        	res.json()
+								.then((resData) => {
+									deleteItemFromDatabase('sync-contacts', resData.id);
+								});
                         }
                     })
                     .catch((err) => {
