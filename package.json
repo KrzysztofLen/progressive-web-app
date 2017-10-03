@@ -8,7 +8,7 @@
     "start": "npm-run-all --parallel security-check dev-server lint:html build",
     "build": "webpack",
     "dev-server": "webpack-dev-server -d --hot --config webpack.config.js",
-    "lint:eslint": "esw webpack.config.* src buildScripts",
+    "lint:eslint": "esw webpack.config.* public/**/**/*.js buildScripts",
     "lint:html": "node ./buildScripts/html-validator.js",
     "security-check": "nsp check",
     "watch": "webpack --watch",

@@ -1,6 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const cors = require('cors')({origin: true});
+const cors = require('cors')({ origin: true });
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -21,11 +21,11 @@ exports.storeContactsData = functions.https.onRequest((request, response) => {
 			bitcoin: request.body.bitcoin,
 			image: request.body.image
 		})
-		.then(() => {
-			response.status(201).json({message: 'Data stored', id: request.body.id});
-		})
-		.catch((err) => {
-			response.status(500).json({error: err});
-		});
+			.then(() => {
+				response.status(201).json({ message: 'Data stored', id: request.body.id });
+			})
+			.catch((err) => {
+				response.status(500).json({ error: err });
+			});
 	});
 });

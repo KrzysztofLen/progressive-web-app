@@ -1,0 +1,5 @@
+public/src/**/*.min.js
+public/**/**/*.bundle.js
+promise.js
+idb.js
+fetch.js

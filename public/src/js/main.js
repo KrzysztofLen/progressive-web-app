@@ -1,55 +1,55 @@
-const shareImageButton = document.querySelector('#share-image-button');
-const createPostArea = document.querySelector('#create-post');
-const closeCreatePostModalButton = document.querySelector('#close-create-post-modal-btn');
-const pwaContactsList = document.querySelector('#pwa-contacts-list');
-const form = document.querySelector('form'),
-	  name = document.querySelector('#name'),
-	  email = document.querySelector('#email'),
-	  adress = document.querySelector('#adress'),
-	  bitcoin = document.querySelector('#bitcoin');
+const shareImageButton = document.querySelector('#share-image-button'),
+	createPostArea = document.querySelector('#create-post'),
+	closeCreatePostModalButton = document.querySelector('#close-create-post-modal-btn'),
+	pwaContactsList = document.querySelector('#pwa-contacts-list'),
+	form = document.querySelector('form'),
+	name = document.querySelector('#name'),
+	email = document.querySelector('#email'),
+	adress = document.querySelector('#adress'),
+	bitcoin = document.querySelector('#bitcoin');
 
 let defferedPrompt = '';
 
 const openCreatePostModal = () => {
 	createPostArea.style.transform = 'translateY(0)';
 
-	if(defferedPrompt) {
+	if (defferedPrompt) {
 		defferedPrompt.prompt();
 
 		defferedPrompt.userChoice
 			.then((choiceResult) => {
-				console.log(choiceResult.outcome);
+				console.log(choiceResult.outcome); // eslint-disable-line no-console
 
 				if (choiceResult.outcome === 'dismissed') {
-					console.log('User cancelled installation');
+					console.log('User cancelled installation'); // eslint-disable-line no-console
 				} else {
-					console.log('User added to home screen');
+					console.log('User added to home screen'); // eslint-disable-line no-console
 				}
 			});
 
-			defferedPrompt = null;
+		defferedPrompt = null;
 	}
 
 	shareImageButton.style.display = 'none';
-}
+};
 
 window.addEventListener('beforeinstallprompt', (event) => {
-    console.log("beforeinstallprompt fired");
-    event.preventDefault();
-    defferedPrompt = event;
-    return false;
+	console.log('beforeinstallprompt fired'); // eslint-disable-line no-console
+	event.preventDefault();
+	defferedPrompt = event;
+	return false;
 });
 
 const closeCreatePostModal = () => {
 	createPostArea.style.transform = 'translateY(100vh)';
 	shareImageButton.style.display = 'block';
-}
+};
 
 const clearContact = () => {
-	while(pwaContactsList.hasChildNodes()) {
+	while (pwaContactsList.hasChildNodes()) {
 		pwaContactsList.removeChild(pwaContactsList.lastChild);
 	}
-}
+};
 
 const createContact = (data) => {
 
@@ -85,7 +85,7 @@ const createContact = (data) => {
 		const seperatingDiv = document.createElement('div');
 		seperatingDiv.className = 'pwa-card-other-data-wrapper';
 		personOtherData.appendChild(seperatingDiv);
-	
+
 		const personOtherDataCardLabel = document.createElement('span');
 		personOtherDataCardLabel.className = 'pwa-card-label';
 		seperatingDiv.appendChild(personOtherDataCardLabel);
@@ -98,13 +98,13 @@ const createContact = (data) => {
 		spanLabelArray.push(personOtherDataCardLabel);
 	}
 
-	spanLabelArray[0].textContent = 'email: ';
-	spanLabelArray[1].textContent = 'adress: ';
-	spanLabelArray[2].textContent = 'bitcoin: ';
+	spanLabelArray[ 1 ].textContent = 'adress: ';
+	spanLabelArray[ 2 ].textContent = 'bitcoin: ';
+	spanLabelArray[ 0 ].textContent = 'email: ';
 
-	spanDataArray[0].textContent = 	data.email;
-	spanDataArray[1].textContent = 	data.adress;
-	spanDataArray[2].textContent = 	data.bitcoin;
+	spanDataArray[ 0 ].textContent = 	data.email;
+	spanDataArray[ 1 ].textContent = 	data.adress;
+	spanDataArray[ 2 ].textContent = 	data.bitcoin;
 
 	const seperatingDivForImage = document.createElement('div');
 	seperatingDivForImage.className = 'pwa-card-other-data-wrapper';
@@ -134,10 +134,10 @@ closeCreatePostModalButton.addEventListener('click', closeCreatePostModal);
 
 const updateUI = (data) => {
 	clearContact();
-	for (var index = 0; index < data.length; index++) {
-		createContact(data[index]);	
+	for (let index = 0; index < data.length; index++) {
+		createContact(data[ index ]);
 	}
-}
+};
 
 const url = 'https://pwa-app-72fbb.firebaseio.com/contacts.json';
 let networkDataReceived = false;
@@ -148,25 +148,25 @@ fetch(url)
 	})
 	.then((data) => {
 		networkDataReceived = true;
-		console.log('From web', data);
+		console.log('From web', data); // eslint-disable-line no-console
 
-		let dataArray = [];
+		const dataArray = [];
 
-		for(let key in data) {
-			dataArray.push(data[key]);
+		for (const key in data) {
+			dataArray.push(data[ key ]);
 		}
 
 		updateUI(dataArray);
 	});
 
-if('indexedDB' in window) {
-	getAllData('contacts')
+if ('indexedDB' in window) {
+	getAllData('contacts') // eslint-disable-line no-undef
 		.then((data) => {
 			if (!networkDataReceived) {
-				console.log('From cache', data);
+				console.log('From cache', data); // eslint-disable-line no-console
 				updateUI(data);
 			}
-		})
+		});
 }
 
 // Send data imidiatly to backend
@@ -183,49 +183,49 @@ const sendData = () => {
 			email:	email.value,
 			adress:	adress.value,
 			bitcoin:	bitcoin.value,
-			image: "https://firebasestorage.googleapis.com/v0/b/pwa-app-72fbb.appspot.com/o/brooke-lark-229136.jpg?alt=media&token=922238cc-7795-4316-ab1e-b32864c39f54"
+			image: 'https://firebasestorage.googleapis.com/v0/b/pwa-app-72fbb.appspot.com/o/brooke-lark-229136.jpg?alt=media&token=922238cc-7795-4316-ab1e-b32864c39f54'
 		})
 	})
 		.then((res) => {
-			console.log('Sent data', res);
+			console.log('Sent data', res); // eslint-disable-line no-console
 			updateUI();
-		})
-}
+		});
+};
 
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
-	if(name.value.trim() === '' || email.value.trim() === '' || adress.value.trim() === '' || bitcoin.value.trim() === '') {
+	if (name.value.trim() === '' || email.value.trim() === '' || adress.value.trim() === '' || bitcoin.value.trim() === '') {
 		alert('Please enter valid data!');
 		return;
 	}
 
 	closeCreatePostModal();
 
-	if('serviceWorker' in navigator && 'SyncManager' in window) {
+	if ('serviceWorker' in navigator && 'SyncManager' in window) {
 		navigator.serviceWorker.ready
 			.then((sw) => {
 
-			const contact = {
-				id: new Date().toISOString(),
-				name:	name.value,
-				email:	email.value,
-				adress:	adress.value,
-				bitcoin:	bitcoin.value
-			};
+				const contact = {
+					id: new Date().toISOString(),
+					name:	name.value,
+					email:	email.value,
+					adress:	adress.value,
+					bitcoin:	bitcoin.value
+				};
 
-			setAllData('sync-contacts', contact)
-				.then(() => {
-					return sw.sync.register('sync-new-contact');
-				})
+				setAllData('sync-contacts', contact) // eslint-disable-line no-undef
+					.then(() => {
+						return sw.sync.register('sync-new-contact');
+					})
 				// showing material message
-				.then(() => {
-					const snackbarContainer = document.querySelector('#confirmation-toast');
-					const data = {message: 'Your Post was saved for syncing!'};
-					snackbarContainer.MaterialSnackbar.showSnackbar(data);
-				})
-				.catch((err) => {
-					console.log(err);
-				})
+					.then(() => {
+						const snackbarContainer = document.querySelector('#confirmation-toast');
+						const data = {	message: 'Your Post was saved for syncing!'	};
+						snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					})
+					.catch((err) => {
+						console.log(err); // eslint-disable-line no-console
+					});
 			});
 	} else {
 		sendData();
