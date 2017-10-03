@@ -1,5 +1,6 @@
 :root {
     --label-color: #2d2d2d;
+    --white: #fff;
 }
 
 .demo-list-two {
@@ -79,3 +80,15 @@
 .mdl-button--raised.mdl-button--colored {
     padding: 0 35px;
 }
+
+.mdl-layout--fixed-tabs .mdl-layout__tab {
+    color: white;
+}
+
+.mdl-textfield__label {
+    color: var(--label-color);
+}
+
+/*.mdl-button--raised {*/
+    /*color: var(--label-color)!important;*/
+/*}*/

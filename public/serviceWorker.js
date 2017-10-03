@@ -8,12 +8,12 @@ const STATIC_FILES = [
 	"/index.html",
 	"/offline.html",
 	"/main.bundle.js",
+	"/src/js/material.min.js",
 	"/src/js/promise.js", // support for older browser
 	"/src/js/fetch.js", // don't make sens because service workers doesn't supports by older browsers
 	"/src/js/idb.js",
 	"/src/images/benjamin-hung-340383.jpg",
 	"https://fonts.googleapis.com/css?family=Roboto:400,700",
-	"https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js",
 	"https://fonts.googleapis.com/icon?family=Material+Icons",
 	"https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css"
 ];
