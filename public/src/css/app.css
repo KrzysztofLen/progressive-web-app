@@ -44,7 +44,6 @@
     bottom: 0;
     top: 105px;
     text-align: center;
-    /* display: none; */
     transform: translateY(100vh);
     transition: transform 0.3s;
 }

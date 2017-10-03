@@ -9,9 +9,9 @@ const STATIC_FILES = [
 	'/offline.html',
 	'/main.bundle.js',
 	'/src/js/material.min.js',
-	'/src/js/promise.js', // support for older browser
-	'/src/js/fetch.js', // don't make sens because service workers doesn't supports by older browsers
-	'/src/js/idb.js',
+	'/src/js/promise.min.js', // support for older browser
+	'/src/js/fetch.min.js', // don't make sens because service workers doesn't supports by older browsers
+	'/src/js/idb.min.js',
 	'/src/images/benjamin-hung-340383.jpg',
 	'https://fonts.googleapis.com/css?family=Roboto:400,700',
 	'https://fonts.googleapis.com/icon?family=Material+Icons',

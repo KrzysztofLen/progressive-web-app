@@ -29,7 +29,12 @@ const config = {
 				test: /\.css$/,
 				use: [ 'css-hot-loader' ].concat(ExtractTextWebpackPlugin.extract({
 					fallback: 'style-loader',
-					use: [ 'css-loader', 'postcss-loader' ]
+					use: [ {
+						loader: 'css-loader',
+						options: {
+							minimize: true
+						}
+					}, 'postcss-loader' ]
 				}))
 			},
 			{
@@ -70,7 +75,7 @@ const config = {
 		] // end rules
 	},
 	plugins: [
-		new ExtractTextWebpackPlugin('styles.css'),
+		new ExtractTextWebpackPlugin('dist/styles.css'),
 		new webpack.optimize.UglifyJsPlugin()
 	],
 	devServer: {
