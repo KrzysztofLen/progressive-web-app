@@ -1,4 +1,4 @@
-// import 'utility.js'; // eslint-disable-line no-undef
+import './utility.js';
 
 const shareImageButton = document.querySelector('#share-image-button'),
 	createPostArea = document.querySelector('#create-post'),
@@ -162,10 +162,10 @@ fetch(url)
 	});
 
 if ('indexedDB' in window) {
-	getAllData('contacts') // eslint-disable-line no-undef
+	getAllData('contacts')
 		.then((data) => {
 			if (!networkDataReceived) {
-				console.log('From cache', data); // eslint-disable-line no-console
+				console.log('[From cache]', data); // eslint-disable-line no-console
 				updateUI(data);
 			}
 		});
@@ -215,7 +215,7 @@ form.addEventListener('submit', (event) => {
 					bitcoin:	bitcoin.value
 				};
 
-				setAllData('sync-contacts', contact) // eslint-disable-line no-undef
+				setAllData('sync-contacts', contact)
 					.then(() => {
 						return sw.sync.register('sync-new-contact');
 					})

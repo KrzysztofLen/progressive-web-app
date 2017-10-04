@@ -87,3 +87,7 @@
 .mdl-textfield__label {
     color: var(--label-color);
 }
+
+.enable-notifications {
+	display: none;
+}

@@ -52,5 +52,20 @@ module.exports = {
 			this.assert.equal(result.value, true);
 		});
 		browser.end();
+	},
+
+	'Is html has a lang attribute': (browser) => {
+		browser.url(TARGET_PAGE_URL);
+		browser.assert.attributeContains('html', 'lang', 'en');
+		browser.end();
+	},
+
+	'Is notification works': (browser) => {
+		browser.url(TARGET_PAGE_URL);
+		browser.click('.enable-notifications', function(response) {
+			this.assert.ok(browser === this, 'Notification showed');
+			this.assert.ok(typeof response === 'object', 'We got a response object');
+		});
+		browser.end();
 	}
 };

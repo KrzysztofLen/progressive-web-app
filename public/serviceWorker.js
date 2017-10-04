@@ -1,7 +1,7 @@
 importScripts('/src/js/idb.js'); // eslint-disable-line no-undef
 importScripts('/src/js/utility.js'); // eslint-disable-line no-undef
 
-const CACHE_STATIC_NAME = 'static-v1.13';
+const CACHE_STATIC_NAME = 'static-v1.14';
 const CACHE_DYNAMIC_NAME = 'dynamic-v1.0';
 const STATIC_FILES = [
 	'/',
@@ -153,4 +153,23 @@ self.addEventListener('sync', (event) => {
 				})
 		);
 	}
+});
+
+// notification click event
+self.addEventListener('notificationclick', (event) => {
+	const notification = event.notification;
+	const action = event.action;
+
+	console.log(notification); // eslint-disable-line no-console
+
+	if (action === 'confirm') {
+		console.log('[Confirm was chosen]'); // eslint-disable-line no-console
+	} else {
+		console.log(action); // eslint-disable-line no-console
+	}
+	notification.close();
+});
+
+self.addEventListener('notificationclose', (event) => {
+	console.log('[Notification was closed', event); // eslint-disable-line no-console
 });

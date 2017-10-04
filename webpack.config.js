@@ -56,6 +56,7 @@ const config = {
 					query: {
 						mozjpeg: {
 							progressive: true,
+							quality: 65
 						},
 						gifsicle: {
 							interlaced: false,
@@ -64,7 +65,7 @@ const config = {
 							optimizationLevel: 5,
 						},
 						pngquant: {
-							quality: '65-90',
+							quality: '65-70',
 							speed: 3,
 						},
 					},
