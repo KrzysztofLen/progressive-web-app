@@ -14,6 +14,21 @@ if ('serviceWorker' in navigator) {
 		});
 }
 
+function urlBase64ToUint8Array(base64String) {
+	var padding = '='.repeat((4 - base64String.length % 4) % 4);
+	var base64 = (base64String + padding)
+		.replace(/\-/g, '+')
+		.replace(/_/g, '/');
+
+	var rawData = window.atob(base64);
+	var outputArray = new Uint8Array(rawData.length);
+
+	for (var i = 0; i < rawData.length; ++i) {
+		outputArray[i] = rawData.charCodeAt(i);
+	}
+	return outputArray;
+}
+
 const displayConfirmNotification = () => {
 	if ('serviceWorker' in navigator) {
 		const options = {
@@ -22,7 +37,7 @@ const displayConfirmNotification = () => {
 			dir: 'ltr',
 			lang: 'en-US',
 			vibrate: [ 500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500 ],
-			bagde:	'/src/images/icons/apple-icon-96x96.png',
+			badge:	'/src/images/icons/apple-icon-96x96.png',
 			tag: 'confirm-notification',
 			renotify: true,
 			actions: [
@@ -56,17 +71,39 @@ const configurePushSub = () => {
 	navigator.serviceWorker.ready
 		.then((swreg) => {
 			reg = swreg;
-			swreg.pushManager.getSubscription();
+			return swreg.pushManager.getSubscription();
 		})
 		.then((sub) => {
 			if (sub === null) {
 				// Create a new subscription
-				reg.pushManager.subscribe({
-					userVisibleOnly: true
+				const vapidPublicKey = 'BAUPeHt3kZqk4sF0HlrSs-zBP_E1AX0nQQiuB0SLXD5lhuh-YFWh69wPb6mX_mXVulzof3bMGmb73fczAnZILac';
+				const convertedVapidPublicKey = urlBase64ToUint8Array(vapidPublicKey);
+
+				return reg.pushManager.subscribe({
+					userVisibleOnly: true,
+					applicationServerKey: convertedVapidPublicKey
 				});
 			} else {
 				// We have  a subscripion
 			}
+		})
+		.then((newSubscription) => {
+			return fetch('https://pwa-app-72fbb.firebaseio.com/subscription.json', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': 'application/json'
+				},
+				body: JSON.stringify(newSubscription)
+			})
+		})
+		.then((res) => {
+			if (res.ok) {
+				displayConfirmNotification();
+			}
+		})
+		.catch((err) => {
+			console.log(err);
 		});
 };
 
@@ -77,8 +114,8 @@ const askForNotificationPermission = () => {
 			if (result !== 'granted') {
 				console.log('[User Choice] : Notification Permission wasn\'t granted.'); // eslint-disable-line no-console
 			} else {
-				// configurePushSub();
-				displayConfirmNotification();
+				configurePushSub();
+				// displayConfirmNotification();
 			}
 		});
 };
