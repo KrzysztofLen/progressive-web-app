@@ -51,7 +51,7 @@ const config = {
 			},
 			{
 				test: /\.(jpe?g|png|gif|svg)$/i,
-				loaders: [ 'file-loader?context=src/assets/images/&name=images/[path][name].[ext]', {  // images loader
+				loaders: [ 'file-loader?name=/dist/img/[name].[ext]', {  // images loader folder output
 					loader: 'image-webpack-loader',
 					query: {
 						mozjpeg: {
@@ -61,10 +61,10 @@ const config = {
 							interlaced: false,
 						},
 						optipng: {
-							optimizationLevel: 4,
+							optimizationLevel: 5,
 						},
 						pngquant: {
-							quality: '75-90',
+							quality: '65-90',
 							speed: 3,
 						},
 					},

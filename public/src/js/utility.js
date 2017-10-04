@@ -38,7 +38,7 @@ const setAllData = (st, data) => { // eslint-disable-line no-unused-vars
 		});
 };
 
-const getAllData = (st) => { // eslint-disable-line no-unused-vars
+let getAllData = (st) => { // eslint-disable-line no-unused-vars
 	return dbPromise
 		.then((db) => {
 			const tx = db.transaction(st, 'readonly');

@@ -11,7 +11,7 @@ module.exports = {
 
   "selenium" : {
     "start_process" : true,
-    "host": "127.0.0.1",
+    "host": "https://pwa-app-72fbb.firebaseapp.com/",
     "port" : 4444,
     "cli_args" : {
       "webdriver.chrome.driver" : "./bin/chromedriver",
@@ -21,7 +21,7 @@ module.exports = {
 
   "test_settings" : {
     "default" : {
-      "launch_url" : "http://localhost:3002/",
+      "launch_url" : "https://pwa-app-72fbb.firebaseapp.com/",
       "selenium_port"  : 4444,
       "selenium_host"  : "localhost",
       "silent": true,

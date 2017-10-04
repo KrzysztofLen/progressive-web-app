@@ -1,3 +1,5 @@
+// import 'utility.js'; // eslint-disable-line no-undef
+
 const shareImageButton = document.querySelector('#share-image-button'),
 	createPostArea = document.querySelector('#create-post'),
 	closeCreatePostModalButton = document.querySelector('#close-create-post-modal-btn'),

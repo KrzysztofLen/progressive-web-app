@@ -13,7 +13,9 @@
     "security-check": "nsp check",
     "watch": "webpack --watch",
     "uglifyjs": "uglifyjs public/src/js/idb.js -o public/src/js/idb.min.js --compress --mangle && uglifyjs public/src/js/fetch.js -o public/src/js/fetch.min.js --compress --mangle && uglifyjs public/src/js/promise.js -o public/src/js/promise.min.js --compress --mangle && uglifyjs public/src/js/utility.js -o public/src/js/utility.min.js --compress --mangle && uglifyjs public/src/js/app.js -o public/src/js/app.min.js --compress --mangle && uglifyjs public/src/js/main.js -o public/src/js/main.min.js --compress --mangle",
-    "local": "lt --port 3002"
+    "local": "lt --port 3002",
+	"selenium:start": "selenium-standalone install && selenium-standalone start",
+	"test:e2e": "nightwatch"
   },
   "repository": {
     "type": "git",
@@ -54,6 +56,7 @@
     "optimize-js-plugin": "0.0.4",
     "postcss-loader": "^2.0.6",
     "style-loader": "^0.18.2",
+    "selenium-standalone": "^6.9.0",
     "uglify-js": "^3.1.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.5.5",
