@@ -166,10 +166,52 @@ self.addEventListener('notificationclick', (event) => {
 		console.log('[Confirm was chosen]'); // eslint-disable-line no-console
 	} else {
 		console.log(action); // eslint-disable-line no-console
+		event.waitUntil(
+			clients.matchAll()
+				.then((clis) => {
+					const client = clis.find((c) => {
+						return c.visibilityStat === 'visible';
+					});
+
+					if (client !== undefined) {
+						client.navigate(notification.data.url);
+						client.focus();
+					} else {
+						clients.openWindow(notification.data.url);
+					}
+					notification.close();
+				})
+		);
 	}
-	notification.close();
 });
 
 self.addEventListener('notificationclose', (event) => {
 	console.log('[Notification was closed', event); // eslint-disable-line no-console
+});
+
+self.addEventListener('push', (event) => {
+	console.log('Push Notifiction received', event);  // eslint-disable-line no-console
+
+	let data = {
+		title: 'New!',
+		content: 'Something new happedned!',
+		openUrl: '/'
+	};
+
+	if (event.data) {
+		data = JSON.parse(event.data.text());
+	}
+
+	const options = {
+		body: data.content,
+		icon: '/src/images/icons/apple-icon-96x96.png',
+		badge: '/src/images/icons/apple-icon-96x96.png',
+		data: {
+			url: data.openUrl
+		}
+	};
+
+	event.waitUntil(
+		self.registration.showNotification(data.title, options)
+	);
 });

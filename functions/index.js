@@ -23,7 +23,7 @@ exports.storeContactsData = functions.https.onRequest((request, response) => {
 			image: request.body.image
 		})
 			.then(() => {
-			webpush.setVapidDetails('mailto:len.krzysztof@gmail.com', 'BAUPeHt3kZqk4sF0HlrSs-zBP_E1AX0nQQiuB0SLXD5lhuh-YFWh69wPb6mX_mXVulzof3bMGmb73fczAnZILac', 'daDhOOzyWlScCUI_FqDtUDCDu7hhJKehWinP3oCYOnc');
+				webpush.setVapidDetails('mailto:len.krzysztof@gmail.com', 'BAUPeHt3kZqk4sF0HlrSs-zBP_E1AX0nQQiuB0SLXD5lhuh-YFWh69wPb6mX_mXVulzof3bMGmb73fczAnZILac', 'daDhOOzyWlScCUI_FqDtUDCDu7hhJKehWinP3oCYOnc');
 				return admin.database().ref('subscription').once('value');
 			})
 			.then((subscription) => {
@@ -37,11 +37,12 @@ exports.storeContactsData = functions.https.onRequest((request, response) => {
 					};
 					webpush.sendNotification(pushConfig, JSON.stringify({
 						title: 'New contact',
-						content: 'New contact added'
+						content: 'New contact added',
+						openUrl: '/'
 					}))
-					.catch((err) => {
-						console.log(err);
-					})
+						.catch((err) => {
+							console.log(err); // eslint-disable-line no-console
+						});
 				});
 				response.status(201).json({ message: 'Data stored', id: request.body.id });
 			})

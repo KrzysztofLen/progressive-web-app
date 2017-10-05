@@ -95,7 +95,7 @@ const configurePushSub = () => {
 					'Accept': 'application/json'
 				},
 				body: JSON.stringify(newSubscription)
-			})
+			});
 		})
 		.then((res) => {
 			if (res.ok) {
@@ -103,7 +103,7 @@ const configurePushSub = () => {
 			}
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log(err); // eslint-disable-line no-console
 		});
 };
 
