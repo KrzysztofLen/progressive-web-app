@@ -6,7 +6,7 @@
   "display": "fullscreen",
   "orientation": "portrait-primary",
   "background_color": "#fff",
-  "theme_color": "#3f51b5",
+  "theme_color": "#673AB7",
   "description": "First PWA app",
   "dir": "ltr",
   "lang": "en-US",

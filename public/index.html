@@ -10,7 +10,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.deep_purple-indigo.min.css">
 	<link rel="stylesheet" href="dist/styles.css">
 
      <!-- For SAFARI -->
@@ -38,7 +38,7 @@
     <meta name="msapplication-TileColor" content="#fff">
     <meta name="msapplication-TileImage" content="/src/images/icons/ms-icon-144x144.png">
 
-    <meta name="theme-color" content="#3f51b5">
+    <meta name="theme-color" content="#673AB7">
 </head>
 
 <body>
@@ -138,7 +138,142 @@
                 </section>
                 <section class="mdl-layout__tab-panel" id="fixed-tab-3">
                     <div class="page-content">
-                        <!-- Your content goes here -->
+                        <!-- ######################################Your content goes here -->
+						<header class="header">
+							<h1 class="header__title">Weather PWA</h1>
+							<button id="butRefresh" class="headerButton" aria-label="Refresh"></button>
+							<button id="butAdd" class="headerButton" aria-label="Add"></button>
+						</header>
+
+						<main class="main">
+							<div class="card cardTemplate weather-forecast" hidden>
+								<div class="city-key" hidden></div>
+								<div class="card-last-updated" hidden></div>
+								<div class="location"></div>
+								<div class="date"></div>
+								<div class="description"></div>
+								<div class="current">
+									<div class="visual">
+										<div class="icon"></div>
+										<div class="temperature">
+											<span class="value"></span><span class="scale">°F</span>
+										</div>
+									</div>
+									<div class="description">
+										<div class="humidity"></div>
+										<div class="wind">
+											<span class="value"></span>
+											<span class="scale">mph</span>
+											<span class="direction"></span>°
+										</div>
+										<div class="sunrise"></div>
+										<div class="sunset"></div>
+									</div>
+								</div>
+								<div class="future">
+									<div class="oneday">
+										<div class="date"></div>
+										<div class="icon"></div>
+										<div class="temp-high">
+											<span class="value"></span>°
+										</div>
+										<div class="temp-low">
+											<span class="value"></span>°
+										</div>
+									</div>
+									<div class="oneday">
+										<div class="date"></div>
+										<div class="icon"></div>
+										<div class="temp-high">
+											<span class="value"></span>°
+										</div>
+										<div class="temp-low">
+											<span class="value"></span>°
+										</div>
+									</div>
+									<div class="oneday">
+										<div class="date"></div>
+										<div class="icon"></div>
+										<div class="temp-high">
+											<span class="value"></span>°
+										</div>
+										<div class="temp-low">
+											<span class="value"></span>°
+										</div>
+									</div>
+									<div class="oneday">
+										<div class="date"></div>
+										<div class="icon"></div>
+										<div class="temp-high">
+											<span class="value"></span>°
+										</div>
+										<div class="temp-low">
+											<span class="value"></span>°
+										</div>
+									</div>
+									<div class="oneday">
+										<div class="date"></div>
+										<div class="icon"></div>
+										<div class="temp-high">
+											<span class="value"></span>°
+										</div>
+										<div class="temp-low">
+											<span class="value"></span>°
+										</div>
+									</div>
+									<div class="oneday">
+										<div class="date"></div>
+										<div class="icon"></div>
+										<div class="temp-high">
+											<span class="value"></span>°
+										</div>
+										<div class="temp-low">
+											<span class="value"></span>°
+										</div>
+									</div>
+									<div class="oneday">
+										<div class="date"></div>
+										<div class="icon"></div>
+										<div class="temp-high">
+											<span class="value"></span>°
+										</div>
+										<div class="temp-low">
+											<span class="value"></span>°
+										</div>
+									</div>
+								</div>
+							</div>
+						</main>
+
+						<div class="dialog-container">
+							<div class="dialog">
+								<div class="dialog-title">Add new city</div>
+								<div class="dialog-body">
+									<select id="selectCityToAdd">
+										<!-- Values map to Yahoo Weather API Where On Earth Identifiers (WOEIDs).
+                                             https://developer.yahoo.com/weather/documentation.html#req -->
+										<option value="2357536">Austin, TX</option>
+										<option value="2367105">Boston, MA</option>
+										<option value="2379574">Chicago, IL</option>
+										<option value="2459115">New York, NY</option>
+										<option value="2475687">Portland, OR</option>
+										<option value="2487956">San Francisco, CA</option>
+										<option value="2490383">Seattle, WA</option>
+									</select>
+								</div>
+								<div class="dialog-buttons">
+									<button id="butAddCity" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Add</button>
+									<button id="butAddCancel" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cancel</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="loader">
+							<svg viewBox="0 0 32 32" width="32" height="32">
+								<circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+							</svg>
+						</div>
+						<!-- ################################################# END -->
                     </div>
                 </section>
             </main>
@@ -155,7 +290,9 @@
     <script async src="/src/js/fetch.min.js"></script>
     <script async src="/src/js/idb.min.js"></script>
     <script async src="/src/js/utility.min.js"></script>
+	<!--<script async src="/src/js/weather.js"></script>-->
     <script async src="./main.bundle.js"></script>
+
 </body>
 
 </html>

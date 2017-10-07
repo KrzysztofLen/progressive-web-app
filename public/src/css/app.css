@@ -91,3 +91,8 @@
 .enable-notifications {
 	display: none;
 }
+
+#share-image-button {
+	background-color: #673AB7;
+	color: var(--white);
+}

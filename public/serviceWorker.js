@@ -1,7 +1,7 @@
 importScripts('/src/js/idb.js'); // eslint-disable-line no-undef
 importScripts('/src/js/utility.js'); // eslint-disable-line no-undef
 
-const CACHE_STATIC_NAME = 'static-v1.14';
+const CACHE_STATIC_NAME = 'static-v1.15';
 const CACHE_DYNAMIC_NAME = 'dynamic-v1.0';
 const STATIC_FILES = [
 	'/',
@@ -13,6 +13,19 @@ const STATIC_FILES = [
 	'/src/js/fetch.min.js', // don't make sens because service workers doesn't supports by older browsers
 	'/src/js/idb.min.js',
 	'/src/images/benjamin-hung-340383.jpg',
+	'/src/images/weather/clear.png',
+	'/src/images/weather/cloudy-scattered-showers.png',
+	'/src/images/weather/cloudy.png',
+	'/src/images/weather/fog.png',
+	'/src/images/weather/ic_add_white_24px.svg',
+	'/src/images/weather/ic_refresh_white_24px.svg',
+	'/src/images/weather/partly-cloudy.png',
+	'/src/images/weather/rain.png',
+	'/src/images/weather/scattered-showers.png',
+	'/src/images/weather/sleet.png',
+	'/src/images/weather/snow.png',
+	'/src/images/weather/thunderstorm.png',
+	'/src/images/weather/wind.png',
 	'https://fonts.googleapis.com/css?family=Roboto:400,700',
 	'https://fonts.googleapis.com/icon?family=Material+Icons',
 	'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css'
@@ -35,7 +48,7 @@ self.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches.open(CACHE_STATIC_NAME)
 			.then((cache) => {
-				console.log('[Service Worker] Precaching App Shell'); // eslint-disable-line no-console
+				console.log('[Service Worker] Caching App Shell'); // eslint-disable-line no-console
 				cache.addAll(STATIC_FILES);
 			})
 	);
@@ -164,6 +177,7 @@ self.addEventListener('notificationclick', (event) => {
 
 	if (action === 'confirm') {
 		console.log('[Confirm was chosen]'); // eslint-disable-line no-console
+		notification.close();
 	} else {
 		console.log(action); // eslint-disable-line no-console
 		event.waitUntil(
