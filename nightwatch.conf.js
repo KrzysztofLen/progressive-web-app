@@ -3,8 +3,8 @@ const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const CHROME_CANARY = "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary";
 
 module.exports = {
-	"src_folders": ["e2e"],
-	"output_folder": "e2e",
+	"src_folders": ["test/e2e/specs"],
+	"output_folder": "test/e2e/reports",
 	"custom_commands_path": "",
 	"custom_assertions_path": "",
 	"page_objects_path": "",
@@ -15,8 +15,8 @@ module.exports = {
 		"host": "https://pwa-app-72fbb.firebaseapp.com/",
 		"port": 4444,
 		"cli_args": {
-			"webdriver.chrome.driver": "./bin/chromedriver",
-			"webdriver.gecko.driver": "./bin/geckodriver"
+			"webdriver.chrome.driver": require('chromedriver').path,
+			"webdriver.gecko.driver": require('geckodriver').path
 		}
 	},
 
@@ -28,7 +28,7 @@ module.exports = {
 			"silent": true,
 			"screenshots": {
 				"enabled": true,
-				"path": "./e2e/screenshots/"
+				"path": "./test/e2e/reports/screenshots/"
 			},
 			"desiredCapabilities": {
 				"browserName": "chrome",
@@ -54,9 +54,11 @@ module.exports = {
 			}
 		},
 
-		"edge": {
-			"desiredCapabilities": {
-				"browserName": "MicrosoftEdge"
+		firefox: {
+			desiredCapabilities: {
+				browserName: 'firefox',
+				javascriptEnabled: true,
+				acceptSslCerts: true
 			}
 		}
 	}

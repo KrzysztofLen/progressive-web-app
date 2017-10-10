@@ -37,7 +37,7 @@ module.exports = {
 	'Capture screenshot to see manually that page looks correct': (browser) => {
 		browser.url(TARGET_PAGE_URL);
 		browser.waitForElementVisible('body', 1000);
-		const screenshot = './e2e/screenshots/screenshot-' + new Date().toISOString().slice(0, -5) + '.png';
+		const screenshot = './test/e2e/reports/screenshots/screenshot-' + new Date().toISOString().slice(0, -5) + '.png';
 		const filename = screenshot.replace(/:/g, '-');
 		browser.saveScreenshot(filename);
 		browser.end();

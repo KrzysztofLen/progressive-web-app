@@ -9,7 +9,7 @@ const config = {
 	],
 	output: {
 		path: path.resolve(__dirname, 'public'),
-		filename: '[name].bundle.js'
+		filename: '[name].example.js'
 	},
 	watch: true,
 	resolve: { // These options change how modules are resolved

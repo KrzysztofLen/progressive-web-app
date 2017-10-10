@@ -7,7 +7,7 @@ const STATIC_FILES = [
 	'/',
 	'/index.html',
 	'/offline.html',
-	'/main.bundle.js',
+	'/main.example.js',
 	'/src/js/material.min.js',
 	'/src/js/promise.min.js', // support for older browser
 	'/src/js/fetch.min.js', // don't make sens because service workers doesn't supports by older browsers
