@@ -5,54 +5,54 @@
 
   <testsuite name="nightwatch.spec"
     errors="0" failures="0" hostname="" id="" package="nightwatch.spec" skipped="0"
-    tests="8" time="73.43" timestamp="Tue, 10 Oct 2017 20:45:43 GMT">
+    tests="8" time="86.01" timestamp="Wed, 11 Oct 2017 16:38:12 GMT">
   
-    <testcase name="Is page had correct URL" classname="nightwatch.spec" time="10.54" assertions="1">
+    <testcase name="Is page had correct URL" classname="nightwatch.spec" time="14.10" assertions="1">
 
     
     </testcase>
   
-    <testcase name="Is page had correct title" classname="nightwatch.spec" time="8.971" assertions="2">
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="Is app contains correct text?" classname="nightwatch.spec" time="9.287" assertions="2">
+    <testcase name="Is page had correct title" classname="nightwatch.spec" time="10.14" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="Is main part of app contains proper number of menu elements?" classname="nightwatch.spec" time="7.994" assertions="1">
-
-    
-    </testcase>
-  
-    <testcase name="Capture screenshot to see manually that page looks correct" classname="nightwatch.spec" time="9.271" assertions="1">
-
-    
-    </testcase>
-  
-    <testcase name="Check button enable notification is visible" classname="nightwatch.spec" time="8.244" assertions="4">
-
-    
-
-    
+    <testcase name="Is app contains correct text?" classname="nightwatch.spec" time="9.858" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="Is html has a lang attribute" classname="nightwatch.spec" time="7.068" assertions="1">
+    <testcase name="Is main part of app contains proper number of menu elements?" classname="nightwatch.spec" time="9.695" assertions="1">
 
     
     </testcase>
   
-    <testcase name="Is notification works" classname="nightwatch.spec" time="12.06" assertions="2">
+    <testcase name="Capture screenshot to see manually that page looks correct" classname="nightwatch.spec" time="10.31" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="Check button enable notification is visible" classname="nightwatch.spec" time="9.685" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Is html has a lang attribute" classname="nightwatch.spec" time="9.077" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="Is notification works" classname="nightwatch.spec" time="13.14" assertions="2">
 
     
 

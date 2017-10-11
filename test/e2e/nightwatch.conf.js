@@ -1,4 +1,3 @@
-require('babel-register');
 // eslint-disable-line quotes
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const CHROME_CANARY = "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary";
@@ -11,40 +10,46 @@ module.exports = {
 	"page_objects_path": "",
 	"globals_path": "",
 
-	selenium: {
-		start_process: true,
-		server_path: require('selenium-server').path,
-		host: "https://pwa-app-72fbb.firebaseapp.com/",
-		port: 4444,
-		cli_args: {
+	"selenium": {
+		"start_process": true,
+		"host": "https://pwa-app-72fbb.firebaseapp.com/",
+		"port": 4444,
+		"cli_args": {
 			"webdriver.chrome.driver": require('chromedriver').path,
 			"webdriver.gecko.driver": require('geckodriver').path
 		}
 	},
 
-	test_settings: {
-		default: {
-			launch_url: "https://pwa-app-72fbb.firebaseapp.com/",
-			selenium_port: 4444,
-			selenium_host: "localhost",
-			silent: true,
-			screenshots: {
+	"test_settings": {
+		"default": {
+			"launch_url": "https://pwa-app-72fbb.firebaseapp.com/",
+			"selenium_port": 4444,
+			"selenium_host": "localhost",
+			"silent": true,
+			"screenshots": {
 				"enabled": true,
-				"path": "./reports/screenshots/"
+				"path": "./test/e2e/reports/screenshots/"
+			},
+			"desiredCapabilities": {
+				"browserName": "chrome",
+				"javascriptEnabled": true,
+				"acceptSslCerts": true,
+				"marionette": true,
+				"acceptInsecureCerts": true
 			}
 		},
 
-		chrome: {
-			desiredCapabilities: {
-				browserName: "chrome",
-				javascriptEnabled: true,
-				acceptSslCerts: true,
-				marionette: true,
-				chromeOptions: {
-					args: [
+		"chrome": {
+			"desiredCapabilities": {
+				"browserName": "chrome",
+				"javascriptEnabled": true,
+				"acceptSslCerts": true,
+				"marionette": true,
+				"chromeOptions": {
+					"args": [
 						"--headless"
 					],
-					binary: CHROME
+					"binary": CHROME
 				}
 			}
 		},
